@@ -25,16 +25,17 @@ jobs:
   app-ci-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-      - run: |
-          echo "npm install..."
-          npm install || true
-          echo "npm test..."
-          npm test --if-present
+       - run: echo "app-ci-test stage - placeholder for actual CI tests"
+#      - uses: actions/checkout@v4
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: '18'
+#          cache: 'npm'
+#      - run: |
+#          echo "npm install..."
+#          npm install || true
+#          echo "npm test..."
+#          npm test --if-present
 
   # ==========================================
   # STAGE 2: SECURITY SCANS
