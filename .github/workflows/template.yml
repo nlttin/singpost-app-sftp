@@ -62,7 +62,7 @@ jobs:
       image-name: 'singpost-app-sftp'
       dockerfile: 'Dockerfile'
       context: '.'
-      push: false
+      push: true
     secrets: inherit
 
   database-migration:
