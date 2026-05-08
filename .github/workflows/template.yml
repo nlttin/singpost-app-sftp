@@ -7,6 +7,10 @@ on:
       - dev
       - 'feature/**'
   pull_request:
+    branches:
+      - main
+      - dev
+      - 'feature/**'
 
 permissions:
   contents: read
@@ -36,9 +40,7 @@ jobs:
           node-version: '22'
           cache: 'npm'
       - run: |
-          echo "npm install..."
           npm install || true
-          echo "npm test..."
           npm test --if-present
 
   # ==========================================
