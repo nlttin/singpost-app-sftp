@@ -79,12 +79,13 @@ jobs:
   deploy-dev:
     needs: [build-and-push, database-migration]
     if: github.ref == 'refs/heads/dev'
-    uses: nlttin/singpost-cicd-components/.github/workflows/reusable-cloud-run-deploy.yml@feature/gcp-cloud-run
+    uses: nlttin/singpost-cicd-components/.github/workflows/reusable-cloud-run-deploy-heredoc.yml@feature/gcp-cloud-run
     with:
       service-name: 'singpost-app-sftp-dev'
       image-name: 'singpost-app-sftp'
       project-id: ${{ vars.GCP_PROJECT_ID }}
       region: 'asia-southeast1'
+      dockerfile: 'Dockerfile'
       wif-provider: ${{ secrets.WIF_PROVIDER }}
       deployer-sa: ${{ secrets.GCP_DEPLOYER_SA }}
       runtime-sa: ${{ secrets.GCP_RUNTIME_SA }}
@@ -94,13 +95,14 @@ jobs:
 
   deploy-prod:
     needs: [build-and-push, database-migration]
-    if: github.ref == 'refs/heads/main' || github.base_ref == 'main'
-    uses: nlttin/singpost-cicd-components/.github/workflows/reusable-cloud-run-deploy.yml@feature/gcp-cloud-run
+    if: github.ref == 'refs/heads/main'
+    uses: nlttin/singpost-cicd-components/.github/workflows/reusable-cloud-run-deploy-heredoc.yml@feature/gcp-cloud-run
     with:
       service-name: 'singpost-app-sftp-prod'
       image-name: 'singpost-app-sftp'
       project-id: ${{ vars.GCP_PROJECT_ID }}
       region: 'asia-southeast1'
+      dockerfile: 'Dockerfile'
       wif-provider: ${{ secrets.WIF_PROVIDER }}
       deployer-sa: ${{ secrets.GCP_DEPLOYER_SA }}
       runtime-sa: ${{ secrets.GCP_RUNTIME_SA }}
